@@ -41,5 +41,5 @@ jobs:
       uses: docker://ghcr.io/enricomi/publish-unit-test-result-action:latest
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        files: ./**/*.xml
+        files: ./**/*.Spec.*.xml
 
