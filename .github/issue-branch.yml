@@ -1,0 +1,12 @@
+mode: chatops
+silent: false
+autoCloseIssue: true
+branchName: '${issue.number}-${issue.title,}'
+gitSafeReplacementChar: '-'
+branches:
+  - label: bug
+    prefix: bugfix/
+  - label: hotfix
+    prefix: hotfix/    
+  - label: '*'
+    prefix: feature/
