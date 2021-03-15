@@ -10,7 +10,7 @@ import play.api.test.{FakeHeaders, FakeRequest, Injecting}
 
 import java.util.UUID
 
-class BookEndpointsSpec extends PlaySpec with GuiceOneAppPerTest with Injecting {
+class ApiRouterSpec extends PlaySpec with GuiceOneAppPerTest with Injecting {
 
   "ApiRouter" should {
 
