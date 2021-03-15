@@ -4,7 +4,8 @@
 # ~~~~
 
 # An example API router
-->         /        books.infrastructure.routers.ApiRouter
+->         /        shared.infrastructure.ApiRouter
+->         /        books.infrastructure.ApiRouter
 
 # Here you can also add "regular" Play routes and controllers (not using Tapir)
 GET        /        controllers.Default.redirect(to = "./docs/")

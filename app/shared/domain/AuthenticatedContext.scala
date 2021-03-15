@@ -1,3 +1,3 @@
-package books.infrastructure.tapir.auth
+package shared.domain
 
 case class AuthenticatedContext(userId: String)
