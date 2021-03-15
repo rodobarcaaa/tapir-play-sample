@@ -1,24 +1,28 @@
 package books.application
 
+import akka.actor.ActorSystem
 import books.domain._
-import books.infrastructure.tapir.auth.AuthError
+import shared.domain.ApiError
 
 import javax.inject._
 import scala.concurrent.Future
 
 @Singleton
-class BookService @Inject()(bookRepository: BookRepository) {
+class BookService @Inject() (bookRepository: BookRepository)(implicit as: ActorSystem) {
+  import as.dispatcher
 
-  def listBooks: Future[Either[Unit, Seq[Book]]] =
-    Future.successful(Right(bookRepository.getBooks))
+  def all(title: Option[String]): Future[Either[Unit, Seq[Book]]] =
+    bookRepository.all(title).map(Right(_))
 
-  def addBook(book: Book): Future[Either[AuthError, Unit]] =
-    Future.successful(Right(bookRepository.addBook(book)))
+  def add(book: Book): Future[Either[ApiError, BookId]] =
+    bookRepository.add(book).map(Right(_))
 
-  def getBook(title: String): Future[Either[String, Book]] = Future.successful {
-    bookRepository.getBooks
-      .find(_.title == title)
-      .toRight(s"No book with exact title $title")
-  }
+  def get(id: BookId): Future[Either[ApiError, Book]] =
+    bookRepository.get(id).map(_.toRight(BookNotFound))
 
+  def put(id: BookId, book: Book): Future[Either[ApiError, Unit]] =
+    bookRepository.update(id, book).map(Right(_))
+
+  def delete(id: BookId): Future[Either[ApiError, Unit]] =
+    bookRepository.delete(id).map(Right(_))
 }
