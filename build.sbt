@@ -1,6 +1,6 @@
 import sbt.Keys.packageOptions
 
-val tapirVersion = "0.17.15"
+val tapirVersion = "0.17.16"
 
 lazy val root = (project in file("."))
   .enablePlugins(PlayScala)
@@ -19,7 +19,7 @@ lazy val root = (project in file("."))
       "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs"       % tapirVersion,
       "com.softwaremill.sttp.tapir" %% "tapir-openapi-circe-yaml" % tapirVersion,
       "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-play"    % tapirVersion,
-      "net.codingwell"              %% "scala-guice"              % "4.2.11",
+      "net.codingwell"              %% "scala-guice"              % "5.0.0",
       "org.scalatestplus.play"      %% "scalatestplus-play"       % "5.1.0" % Test
     ),
     publishArtifact := false
