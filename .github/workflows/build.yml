@@ -38,7 +38,8 @@ jobs:
         run: sbt test
 
       - name: Report Tests
-        uses: docker://ghcr.io/enricomi/publish-unit-test-result-action:latest
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           files: ./**/*Spec.xml
